@@ -1,7 +1,6 @@
 from typing import Any
 from dictum.cmd_builders.exec_info import ExecCmdInfo
 from dictum.cmd_builders.nerdctl import get_nerdctl_cmd
-from dictum.selection.find_resources import find_all_resources
 from .selection.find_containers import find_container
 from .cli import cli
 
@@ -25,8 +24,7 @@ def start():
             run(args)
         case "list":
             print("list")
-        case "types":
-            print(find_all_resources())
+
         case _:
             print("unknown command")
             exit(1)

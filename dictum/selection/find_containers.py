@@ -1,4 +1,3 @@
-from attr import dataclass
 from ..init.kubernetes import k8s
 
 
