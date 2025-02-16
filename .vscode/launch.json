@@ -6,7 +6,7 @@
       "request": "launch",
       "type": "debugpy",
       "module": "dictum",
-      "args": ["run -s [app=hello-world-app]", "-C /bin/bash"]
+      "args": ["run", "-s [app=hello-world-app]", "-C /bin/bash"]
     }
   ]
 }

@@ -69,8 +69,8 @@ def cli():
 
     run.add_argument(
         "-C",
-        "--command",
-        dest="command",
+        "--container_command",
+        dest="container_command",
         help="The command to run",
         required=True,
     )

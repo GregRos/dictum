@@ -1,2 +1,9 @@
-# Runs bash setup files
-Runs the files in the [setup.d](../setup.d) folder in order, possibly filtered, and monitors execution.
+# Dictum
+
+Runs commands on the containers of a pod with a specific user (root by default).
+
+## Usage
+
+```bash
+$ dictum run -s "[app=nginx]" -u root -C /bin/bash
+```

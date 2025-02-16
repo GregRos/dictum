@@ -9,7 +9,7 @@ def run(args: Any):
     c = find_container(args.selector)
     cmd = get_nerdctl_cmd(
         ExecCmdInfo(
-            command=args.command,
+            command=args.container_command,
             user=args.username,
             container_id=c,
         )
