@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch src/runner.py??",
+      "request": "launch",
+      "type": "debugpy",
+      "module": "pyrun",
+      "env": {
+        "TEST_ROOT": "./testdata"
+      },
+      "args": ["-C ./testdata/config.yaml", "run", "%"]
+    }
+  ]
+}
