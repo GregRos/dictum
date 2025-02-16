@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "pyrun"
+name = "dictum"
 version = "0.3.1"
-description = "Runs bash scripts and stuff"
+description = "Run commands on pods as any user"
 authors = ["GregRos <gregros@gregros.dev>"]
 readme = "README.md"
-packages = [{ include = "pyrun" }]
+packages = [{ include = "dictum" }]
 [tool.poetry.dependencies]
 python = "3.11.*"
 pygments = "^2.19.1"
@@ -13,7 +13,7 @@ typeguard = "2.13.*"
 pyyaml = "^6.0.2"
 
 [tool.poetry.scripts]
-pyrun = "pyrun.main:start"
+dictum = "dictum.main:start"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

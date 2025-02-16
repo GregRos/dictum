@@ -2,14 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch src/runner.py??",
+      "name": "Launch dictum k.py",
       "request": "launch",
       "type": "debugpy",
-      "module": "pyrun",
-      "env": {
-        "TEST_ROOT": "./testdata"
-      },
-      "args": ["-C ./testdata/config.yaml", "run", "%"]
+      "module": "dictum",
+      "args": ["run -s [app=hello-world-app]", "-C /bin/bash"]
     }
   ]
 }
