@@ -1,10 +1,31 @@
+from typing import Generator
 from ..init.kubernetes import k8s
+import kr8s
+
+
+def get_deployment_name_probably(pod_name: str):
+    return "-".join(pod_name.split("-")[0:-2])
+
+
+def find_deployments(selectors_line: list[str]) -> list[kr8s.objects.Deployment]:
+    from dictum.selection.rephrase_selectors import rephrase_selectors
+
+    api = kr8s.api()
+    selectors = rephrase_selectors([*selectors_line])
+    deps = kr8s.objects.Deployment.list(
+        namespace=kr8s.ALL,
+        field_selector=selectors.field_selector,
+        label_selector=selectors.label_selector,
+    )
+
+    r = [*deps]
+    return r
 
 
 def find_container(selectors_line: list[str]) -> str:
     from dictum.selection.rephrase_selectors import rephrase_selectors
 
-    selectors = rephrase_selectors(selectors_line)
+    selectors = rephrase_selectors([*selectors_line, "status.phase=Running"])
     results = k8s.list_pod_for_all_namespaces(
         label_selector=selectors.label_selector,
         field_selector=selectors.field_selector,

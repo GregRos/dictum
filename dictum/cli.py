@@ -28,11 +28,18 @@ class Args(Protocol):
 
 def cli():
     arg_parser = ArgumentParser(prog="dictum", description="With great k8s power...")
-
+    arg_parser.add_argument(
+        "-s",
+        "--selector",
+        help="The selector to use to select the container to run the command on",
+        dest="selector",
+        required=True,
+    )
     subparsers = arg_parser.add_subparsers(
         title="command", required=True, dest="command"
     )
-
+    subparsers.add_parser("pause", help="Pause a deployment")
+    subparsers.add_parser("unpause", help="Unpause a deployment")
     types = subparsers.add_parser("types", help="List defined resource types")
 
     list = subparsers.add_parser("list", help="list resources by query")
@@ -49,14 +56,6 @@ def cli():
         help="Don't run the command interactively",
         dest="non_interactive",
         action="store_true",
-    )
-    run.add_argument(
-        "-s",
-        "--selector",
-        nargs="+",
-        help="The selector to use to select the container to run the command on",
-        dest="selector",
-        required=True,
     )
 
     run.add_argument(
@@ -75,4 +74,6 @@ def cli():
         required=True,
     )
 
-    return arg_parser.parse_args()
+    r = arg_parser.parse_args()
+    r.selector = [r.selector]
+    return r

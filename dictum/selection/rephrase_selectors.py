@@ -23,7 +23,7 @@ def split_to_selector_types(s: list[str]):
     all_separated = [x.strip() for w in s for x in w.split(",")]
 
     labels = {}
-    fields = {"status.phase": "Running"}
+    fields = {}
     container = {}
     for w in all_separated:
         if w.startswith("^"):
@@ -33,8 +33,9 @@ def split_to_selector_types(s: list[str]):
         if w.startswith("[") and w.endswith("]"):
             w = w[1:-1]
             target = labels
-
         k, v = split_kvp(w)
+        if k == "name" or k == "namespace":
+            k = f"metadata.{k}"
         target[k] = v
     return labels, fields, container
 
