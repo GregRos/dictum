@@ -30,7 +30,7 @@ def pause(args: Any):
             continue
         current_replicas = dep.spec.replicas
         paused_by_dictum = dep.labels.get("dictum/paused", "") == "true"
-        if paused_by_dictum:
+        if paused_by_dictum and current_replicas == 0:
             print(f"Deployment {dep.metadata.name} already paused")
             continue
         current_replicas = dep.replicas
@@ -56,7 +56,7 @@ def unpause(args: Any):
             continue
         current_replicas = dep.spec.replicas
         paused_by_dictum = dep.labels.get("dictum/paused", "") == "true"
-        if not paused_by_dictum:
+        if not paused_by_dictum or current_replicas > 0:
             continue
         if not dep.replicas == 0:
             print(
